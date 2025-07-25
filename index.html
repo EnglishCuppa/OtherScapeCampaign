@@ -69,57 +69,24 @@
       50% { text-shadow: -2px -2px #09eb3e; }
       100% { text-shadow: 2px -2px #09eb3e; }
     }
-
-    /* 🗺️ Cyberpunk UK Map & Soho Highlight */
-    #ukMapContainer {
-      position: relative;
-      width: 20%;
-      max-width: 900px;
-      margin: 20px auto;
-      opacity: 0;
-      transition: opacity 1.2s ease-in;
-    }
-
-    #ukMap {
-      width: 30%;
-      border: 2px solid #00ffff;
-      box-shadow: 0 0 20px #00ffff;
-    }
-
-    #sohoBeacon {
-      position: absolute;
-      top: 43%;
-      left: 52%;
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #ff00ff 0%, transparent 70%);
-      box-shadow: 0 0 12px #ff00ff, 0 0 24px #ff00ff;
-      animation: blink 1s infinite alternate;
-    }
-
-    @keyframes blink {
-      0% { opacity: 0.4; transform: scale(1); }
-      100% { opacity: 1; transform: scale(1.3); }
-    }
   </style>
 </head>
 <body>
 
+  <!-- 🔊 Background Music -->
   <audio autoplay loop>
     <source src="your-music-file.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
 
+  <!-- 🌆 Animated Cyberpunk Background -->
   <video autoplay muted loop id="bgVideo">
     <source src="your-background-video.mp4" type="video/mp4">
   </video>
 
+  <!-- 🧠 Message Flow -->
   <div id="messageBox"></div>
   <button id="acceptBtn">ACCEPT</button>
-  <div id="ukMapContainer">
-    <img src="cyberpunk-uk-map.jpg" alt="Cyberpunk UK Map" id="ukMap" />
-    <div id="sohoBeacon"></div>
-  </div>
   <div id="footer">An Otherscape campaign by The Master Of Disaster....Conner</div>
 
   <script>
@@ -159,8 +126,7 @@
       document.getElementById("acceptBtn").style.display = "none";
       typeMessage("Contract Accepted......Welcome to the big time kid 🙂", () => {
         document.getElementById("messageBox").classList.add("glitch");
-        document.getElementById("ukMapContainer").style.opacity = 1;
-      }, 120);
+      }, 120); // Slower typing speed
     };
   </script>
 </body>
