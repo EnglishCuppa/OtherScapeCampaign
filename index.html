@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Otherscape: Soho Contract</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Share Tech Mono', monospace;
+      color: #00ffff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #bgVideo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+      opacity: 10;
+    }
+
+    #messageBox {
+      font-size: 1.5em;
+      margin-top: 15vh;
+      margin-bottom: 2em;
+      padding: 0 10vw;
+    }
+
+    #acceptBtn {
+      background-color: transparent;
+      border: 2px solid #00ffff;
+      color: #00ffff;
+      font-size: 1.2em;
+      padding: 10px 20px;
+      cursor: pointer;
+      display: none;
+      animation: flicker 1.2s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.1; }
+    }
+
+    #footer {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 1em;
+      color: #ff00ff;
+      opacity: 0.7;
+    }
+
+    .glitch {
+      color: #ff00ff;
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px #00ffff; }
+      50% { text-shadow: -2px -2px #ff00ff; }
+      100% { text-shadow: 2px -2px #00ffff; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔊 Background Music -->
+  <audio autoplay loop>
+    <source src="your-music-file.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- 🌆 Animated Cyberpunk Background -->
+  <video autoplay muted loop id="bgVideo">
+    <source src="your-background-video.mp4" type="video/mp4">
+  </video>
+
+  <!-- 🧠 Message Flow -->
+  <div id="messageBox"></div>
+  <button id="acceptBtn">ACCEPT</button>
+  <div id="footer">An Otherscape campaign by The Master Of Disaster....Conner</div>
+
+  <script>
+    const messages = [
+      "New message from the Soho Gang",
+      "Contract request from Garland. Reaquire stolen cargo. Do you accept?"
+    ];
+    let current = 0;
+
+    function typeMessage(msg, callback, speed = 50) {
+      let i = 0;
+      const box = document.getElementById("messageBox");
+      box.innerHTML = "";
+      const typer = setInterval(() => {
+        box.innerHTML += msg.charAt(i);
+        i++;
+        if (i >= msg.length) {
+          clearInterval(typer);
+          if (callback) callback();
+        }
+      }, speed);
+    }
+
+    // Start Sequence
+    typeMessage(messages[current], () => {
+      setTimeout(() => {
+        document.getElementById("messageBox").innerHTML = "";
+        current++;
+        typeMessage(messages[current], () => {
+          document.getElementById("acceptBtn").style.display = "inline-block";
+        });
+      }, 1500);
+    });
+
+    // Accept Button Click
+    document.getElementById("acceptBtn").onclick = () => {
+      document.getElementById("acceptBtn").style.display = "none";
+      typeMessage("Contract Accepted......Welcome to the big time kid 🙂", () => {
+        document.getElementById("messageBox").classList.add("glitch");
+      }, 120); // Slower typing speed
+    };
+  </script>
+</body>
+</html>
